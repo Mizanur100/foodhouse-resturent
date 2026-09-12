@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>FoodHouse Restaurant</title>
+
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #222;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        .navbar {
+
+            background: #111827;
+
+            color: white;
+
+            padding: 18px 5%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        .logo {
+
+            font-size: 25px;
+
+            font-weight: bold;
+        }
+
+
+        .logo span {
+
+            color: #f97316;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 22px;
+
+            align-items: center;
+        }
+
+
+        .nav-links a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 16px;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+
+            color: #f97316;
+        }
+
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+
+            min-height: 430px;
+
+            padding: 60px 20px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            background:
+
+                linear-gradient(
+                    rgba(0,0,0,0.55),
+                    rgba(0,0,0,0.55)
+                ),
+
+                url("pizza.jpg");
+
+            background-size: cover;
+
+            background-position: center;
+        }
+
+
+        .hero-content {
+
+            color: white;
+
+            max-width: 700px;
+        }
+
+
+        .hero h1 {
+
+            font-size: 48px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .hero p {
+
+            font-size: 20px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .hero-btn {
+
+            display: inline-block;
+
+            background: #f97316;
+
+            color: white;
+
+            padding: 13px 25px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .hero-btn:hover {
+
+            background: #ea580c;
+
+            transform: scale(1.04);
+        }
+
+
+        /* =========================
+           GENERAL SECTION TITLE
+        ========================== */
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+
+        .section-title h2 {
+
+            font-size: 35px;
+
+            color: #111827;
+        }
+
+
+        .section-title p {
+
+            margin-top: 8px;
+
+            color: #666;
+        }
+
+
+        /* =========================
+           MENU
+        ========================== */
+
+        .menu {
+
+            padding: 60px 5%;
+        }
+
+
+        .food-container {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(240px, 1fr));
+
+            gap: 25px;
+        }
+
+
+        /* =========================
+           FOOD CARD
+        ========================== */
+
+        .food-card {
+
+            background: white;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.10);
+
+            transition: 0.3s;
+        }
+
+
+        .food-card:hover {
+
+            transform: translateY(-6px);
+        }
+
+
+        .food-image {
+
+            width: 100%;
+
+            height: 220px;
+
+            overflow: hidden;
+        }
+
+
+        .food-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: 0.3s;
+        }
+
+
+        .food-card:hover
+        .food-image img {
+
+            transform: scale(1.08);
+        }
+
+
+        .food-info {
+
+            padding: 20px;
+        }
+
+
+        .food-info h3 {
+
+            font-size: 23px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .food-info p {
+
+            color: #666;
+
+            line-height: 1.5;
+
+            margin-bottom: 12px;
+        }
+
+
+        .price {
+
+            color: #f97316;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+
+        .add-btn {
+
+            width: 100%;
+
+            border: none;
+
+            background: #111827;
+
+            color: white;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .add-btn:hover {
+
+            background: #f97316;
+        }
+
+
+        /* =========================
+           CART
+        ========================== */
+
+        .cart-section {
+
+            padding: 60px 5%;
+
+            background: #fff7ed;
+        }
+
+
+        .cart-section
+        .section-title h2 {
+
+            color: #111827;
+        }
+
+
+        .cart-box {
+
+            max-width: 700px;
+
+            margin: auto;
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.08);
+        }
+
+
+        #cartItems {
+
+            margin-bottom: 20px;
+        }
+
+
+        .cart-item {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 12px 0;
+
+            border-bottom:
+                1px solid #ddd;
+        }
+
+
+        .cart-item-name {
+
+            font-weight: bold;
+        }
+
+
+        .remove-btn {
+
+            border: none;
+
+            background: #ef4444;
+
+            color: white;
+
+            padding: 6px 10px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+        }
+
+
+        .remove-btn:hover {
+
+            background: #dc2626;
+        }
+
+
+        .cart-total {
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            margin-top: 20px;
+        }
+
+
+        .whatsapp-btn {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            background: #22c55e;
+
+            color: white;
+
+            padding: 13px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .whatsapp-btn:hover {
+
+            background: #16a34a;
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================== */
+
+        .about {
+
+            padding: 60px 5%;
+
+            text-align: center;
+
+            background: white;
+        }
+
+
+        .about p {
+
+            max-width: 700px;
+
+            margin: auto;
+
+            line-height: 1.8;
+
+            color: #555;
+
+            font-size: 17px;
+        }
+
+
+        /* =========================
+           CONTACT
+        ========================== */
+
+        .contact {
+
+            padding: 60px 5%;
+
+            background: #111827;
+
+            color: white;
+
+            text-align: center;
+        }
+
+
+        .contact .section-title h2 {
+
+            color: white;
+        }
+
+
+        .contact .section-title p {
+
+            color: #d1d5db;
+        }
+
+
+        /* =========================
+           CONTACT FORM
+        ========================== */
+
+        .contact-form {
+
+            max-width: 600px;
+
+            margin: 30px auto 0;
+        }
+
+
+        .contact-form form {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+
+        .contact-form input,
+        .contact-form textarea {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            outline: none;
+
+            font-family: Arial, sans-serif;
+        }
+
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+
+            box-shadow:
+                0 0 0 3px
+                rgba(249,115,22,0.4);
+        }
+
+
+        .contact-form textarea {
+
+            resize: vertical;
+
+            min-height: 120px;
+        }
+
+
+        .contact-form button {
+
+            border: none;
+
+            background: #f97316;
+
+            color: white;
+
+            padding: 14px;
+
+            border-radius: 8px;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .contact-form button:hover {
+
+            background: #ea580c;
+        }
+
+
+        /* =========================
+           CONTACT INFO
+        ========================== */
+
+        .contact-info {
+
+            margin-top: 35px;
+
+            line-height: 1.8;
+
+            color: #e5e7eb;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+
+            background: #030712;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 20px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 600px) {
+
+
+            .navbar {
+
+                flex-direction: column;
+
+                gap: 12px;
+
+                padding: 15px 10px;
+            }
+
+
+            .logo {
+
+                font-size: 23px;
+            }
+
+
+            .nav-links {
+
+                gap: 10px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            .nav-links a {
+
+                font-size: 14px;
+            }
+
+
+            .hero {
+
+                min-height: 360px;
+
+                padding: 40px 15px;
+            }
+
+
+            .hero h1 {
+
+                font-size: 34px;
+            }
+
+
+            .hero p {
+
+                font-size: 17px;
+            }
+
+
+            .section-title h2 {
+
+                font-size: 28px;
+            }
+
+
+            .menu {
+
+                padding: 45px 15px;
+            }
+
+
+            .food-container {
+
+                grid-template-columns: 1fr;
+
+                gap: 20px;
+            }
+
+
+            .food-image {
+
+                height: 240px;
+            }
+
+
+            .cart-section {
+
+                padding: 45px 15px;
+            }
+
+
+            .cart-box {
+
+                padding: 20px;
+            }
+
+
+            .cart-item {
+
+                align-items: flex-start;
+            }
+
+
+            .about {
+
+                padding: 45px 15px;
+            }
+
+
+            .contact {
+
+                padding: 45px 15px;
+            }
+
+
+            .contact-form {
+
+                width: 100%;
+            }
+
+
+            .contact-form input,
+            .contact-form textarea {
+
+                font-size: 16px;
+
+                padding: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================== -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        Food<span>House</span>
+
+    </div>
+
+
+    <nav class="nav-links">
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#menu">
+            Menu
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
+
+        <a href="#cart">
+            Cart 🛒
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>
+            Delicious Food
+            Made With Love
+        </h1>
+
+
+        <p>
+            Fresh, tasty and delicious food
+            for everyone.
+        </p>
+
+
+        <a
+            href="#menu"
+            class="hero-btn"
+        >
+            View Menu
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MENU
+========================== -->
+
+<section
+    class="menu"
+    id="menu"
+>
+
+
+    <div class="section-title">
+
+        <h2>
+            Our Menu 🍽️
+        </h2>
+
+
+        <p>
+            Choose your favorite food
+        </p>
+
+    </div>
+
+
+    <div class="food-container">
+
+
+        <!-- =====================
+             PIZZA
+        ====================== -->
+
+        <div class="food-card">
+
+            <div class="food-image">
+
+                <img
+                    src="pizza.jpg"
+                    alt="Pizza"
+                >
+
+            </div>
+
+
+            <div class="food-info">
+
+                <h3>
+                    Pizza 🍕
+                </h3>
+
+
+                <p>
+                    Delicious pizza
+                    with fresh ingredients.
+                </p>
+
+
+                <div class="price">
+                    ৳350
+                </div>
+
+
+                <button
+                    class="add-btn"
+                    onclick="
+                    addToCart('Pizza', 350)
+                    "
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             BIRIYANI
+        ====================== -->
+
+        <div class="food-card">
+
+            <div class="food-image">
+
+                <img
+                    src="berany.jpg"
+                    alt="Biriyani"
+                >
+
+            </div>
+
+
+            <div class="food-info">
+
+                <h3>
+                    Biriyani 🍚
+                </h3>
+
+
+                <p>
+                    Delicious biriyani
+                    with special spices.
+                </p>
+
+
+                <div class="price">
+                    ৳220
+                </div>
+
+
+                <button
+                    class="add-btn"
+                    onclick="
+                    addToCart('Biriyani', 220)
+                    "
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             BURGER
+        ====================== -->
+
+        <div class="food-card">
+
+            <div class="food-image">
+
+                <img
+                    src="bergar.jpg"
+                    alt="Burger"
+                >
+
+            </div>
+
+
+            <div class="food-info">
+
+                <h3>
+                    Burger 🍔
+                </h3>
+
+
+                <p>
+                    Juicy burger with
+                    fresh vegetables.
+                </p>
+
+
+                <div class="price">
+                    ৳180
+                </div>
+
+
+                <button
+                    class="add-btn"
+                    onclick="
+                    addToCart('Burger', 180)
+                    "
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             CHICKEN
+        ====================== -->
+
+        <div class="food-card">
+
+            <div class="food-image">
+
+                <img
+                    src="chekan.jpg"
+                    alt="Chicken"
+                >
+
+            </div>
+
+
+            <div class="food-info">
+
+                <h3>
+                    Chicken 🍗
+                </h3>
+
+
+                <p>
+                    Tasty and crispy
+                    chicken.
+                </p>
+
+
+                <div class="price">
+                    ৳250
+                </div>
+
+
+                <button
+                    class="add-btn"
+                    onclick="
+                    addToCart('Chicken', 250)
+                    "
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CART
+========================== -->
+
+<section
+    class="cart-section"
+    id="cart"
+>
+
+
+    <div class="section-title">
+
+        <h2>
+            Your Cart 🛒
+        </h2>
+
+        <p>
+            Your selected food
+        </p>
+
+    </div>
+
+
+    <div class="cart-box">
+
+
+        <div id="cartItems">
+
+            <p>
+                Your cart is empty.
+            </p>
+
+        </div>
+
+
+        <div class="cart-total">
+
+            Total:
+            ৳<span id="total">0</span>
+
+        </div>
+
+
+        <a
+            id="whatsappOrder"
+            class="whatsapp-btn"
+            href="#"
+            target="_blank"
+        >
+            Order on WhatsApp 📱
+        </a>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================== -->
+
+<section
+    class="about"
+    id="about"
+>
+
+
+    <div class="section-title">
+
+        <h2>
+            About FoodHouse
+        </h2>
+
+    </div>
+
+
+    <p>
+
+        FoodHouse is a simple restaurant
+        website where you can choose
+        your favorite food and place
+        your order easily.
+
+    </p>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================== -->
+
+<section
+    class="contact"
+    id="contact"
+>
+
+
+    <div class="section-title">
+
+        <h2>
+            Contact Us
+        </h2>
+
+
+        <p>
+            Send us your information
+            and message
+        </p>
+
+    </div>
+
+
+    <!-- CONTACT FORM -->
+
+    <div class="contact-form">
+
+
+        <form
+            onsubmit="sendMessage(event)"
+        >
+
+
+            <!-- NAME -->
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Your Name"
+                required
+            >
+
+
+            <!-- PHONE -->
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Your Phone Number"
+                required
+            >
+
+
+            <!-- EMAIL -->
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Your Email"
+                required
+            >
+
+
+            <!-- MESSAGE -->
+
+            <textarea
+                id="message"
+                placeholder="Write your message..."
+                rows="5"
+                required
+            ></textarea>
+
+
+            <!-- SEND -->
+
+            <button
+                type="submit"
+            >
+                Send Message 📩
+            </button>
+
+
+        </form>
+
+    </div>
+
+
+    <!-- CONTACT INFORMATION -->
+
+    <div class="contact-info">
+
+        <p>
+            📞 Phone:
+            01700000000
+        </p>
+
+
+        <p>
+            📧 Email:
+            foodhouse@example.com
+        </p>
+
+
+        <p>
+            📍 Bangladesh
+        </p>
+
+    </div>
+
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+    <p>
+        © 2026 FoodHouse Restaurant
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+
+    /* =========================
+       CART
+    ========================== */
+
+
+    let cart = [];
+
+    let total = 0;
+
+
+    /* =========================
+       ADD TO CART
+    ========================== */
+
+    function addToCart(name, price) {
+
+
+        cart.push({
+
+            name: name,
+
+            price: price
+
+        });
+
+
+        total += price;
+
+
+        updateCart();
+
+    }
+
+
+    /* =========================
+       REMOVE FROM CART
+    ========================== */
+
+    function removeFromCart(index) {
+
+
+        total -= cart[index].price;
+
+
+        cart.splice(index, 1);
+
+
+        updateCart();
+
+    }
+
+
+    /* =========================
+       UPDATE CART
+    ========================== */
+
+    function updateCart() {
+
+
+        const cartItems =
+            document.getElementById(
+                "cartItems"
+            );
+
+
+        const totalElement =
+            document.getElementById(
+                "total"
+            );
+
+
+        if (cart.length === 0) {
+
+
+            cartItems.innerHTML =
+
+                "<p>Your cart is empty.</p>";
+
+
+        }
+
+        else {
+
+
+            cartItems.innerHTML = "";
+
+
+            cart.forEach(
+                function(item, index) {
+
+
+                    cartItems.innerHTML += `
+
+                        <div class="cart-item">
+
+                            <span
+                                class="cart-item-name"
+                            >
+
+                                ${item.name}
+                                - ৳${item.price}
+
+                            </span>
+
+
+                            <button
+                                class="remove-btn"
+                                onclick="
+                                removeFromCart(${index})
+                                "
+                            >
+
+                                Remove
+
+                            </button>
+
+                        </div>
+
+                    `;
+
+                }
+            );
+
+        }
+
+
+        totalElement.innerText =
+            total;
+
+
+        updateWhatsApp();
+
+    }
+
+
+    /* =========================
+       WHATSAPP CART ORDER
+    ========================== */
+
+    function updateWhatsApp() {
+
+
+        let message =
+
+            "Hello FoodHouse!%0A%0A";
+
+
+        message +=
+
+            "I want to order:%0A";
+
+
+        cart.forEach(
+            function(item) {
+
+
+                message +=
+
+                    "- " +
+                    item.name +
+                    " - ৳" +
+                    item.price +
+                    "%0A";
+
+            }
+        );
+
+
+        message +=
+
+            "%0ATotal: ৳" +
+            total;
+
+
+        const phone =
+
+            "8801758210656";
+
+
+        const whatsappLink =
+
+            "https://wa.me/" +
+            phone +
+            "?text=" +
+            message;
+
+
+        document.getElementById(
+            "whatsappOrder"
+        ).href = whatsappLink;
+
+    }
+
+
+    /* =========================
+       CONTACT FORM
+    ========================== */
+
+    function sendMessage(event) {
+
+
+        event.preventDefault();
+
+
+        const name =
+
+            document.getElementById(
+                "name"
+            ).value;
+
+
+        const phone =
+
+            document.getElementById(
+                "phone"
+            ).value;
+
+
+        const email =
+
+            document.getElementById(
+                "email"
+            ).value;
+
+
+        const message =
+
+            document.getElementById(
+                "message"
+            ).value;
+
+
+        const whatsappMessage =
+
+            "Hello FoodHouse!%0A%0A" +
+
+            "Name: " +
+            encodeURIComponent(name) +
+            "%0A" +
+
+            "Phone: " +
+            encodeURIComponent(phone) +
+            "%0A" +
+
+            "Email: " +
+            encodeURIComponent(email) +
+            "%0A%0A" +
+
+            "Message: " +
+            encodeURIComponent(message);
+
+
+        const whatsappNumber =
+
+            "8801758210656";
+
+
+        const whatsappURL =
+
+            "https://wa.me/" +
+            whatsappNumber +
+            "?text=" +
+            whatsappMessage;
+
+
+        window.open(
+            whatsappURL,
+            "_blank"
+        );
+
+    }
+
+
+    /* =========================
+       INITIAL CART
+    ========================== */
+
+    updateCart();
+
+
+</script>
+
+
+</body>
+
+</html>
